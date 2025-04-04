@@ -1,3 +1,5 @@
+package matrix;
+
 public class Matrix {
     protected double[][] matrix;
     protected int width;
@@ -14,6 +16,19 @@ public class Matrix {
 
         this.matrix = matrix;
         this.Update();
+    }
+
+    public boolean Equals(Matrix matrix) {
+        if (matrix.width != this.width) return false;
+        if (matrix.height != this.height) return false;
+        for (int i = 0; i < this.height; i++) {
+            for (int j = 0; j < this.width; j++) {
+                if (this.matrix[i][j] != matrix.matrix[i][j]) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     private void Update() {
@@ -72,10 +87,27 @@ public class Matrix {
     private double Subtask(double[][] matrix, int N) {
         if (N==1) return matrix[0][0];
 
-        int result = 0;
+        double result = 0;
 
-        for (int i = 0; i < N; i++) {
-            
+        int i = 0; // TODO: implement Laplace's expansion
+        for (int j = 0; j < N; j++) {
+
+            // initialise the minor
+            double[][] m = new double[N-1][];
+            for (int k = 0; k < N-1; k++) {
+                m[k] = new double[N-1];
+            }
+
+            for (int i1 = 0, i2 = 0; i1 < N-1; i1++, i2++) {
+                for (int j1 = 0, j2 = 0; j1 < N-1; j1++, j2++) {
+                    if (j2 == j) j2++;
+                    if (i2 == i) i2++;  
+                    m[i1][j1] = matrix[i2][j2];
+                }
+            }
+
+            int parity = ((i+j) % 2 == 0) ? 1 : -1;
+            result += parity * matrix[i][j] * Subtask(m, N-1);
         }
 
         return result;
