@@ -114,5 +114,9 @@ public class Matrix {
         
     }
 
-
+    public void Gaussian() {
+        // find rows of zeros and move them down
+        
+        // divide and subtract
+    }
 }
