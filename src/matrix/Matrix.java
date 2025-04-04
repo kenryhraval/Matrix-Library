@@ -89,7 +89,7 @@ public class Matrix {
 
         double result = 0;
 
-        int i = 0; // TODO: implement Laplace's expansion
+        int i = 0; // implement Laplace's expansion
         for (int j = 0; j < N; j++) {
 
             // initialise the minor
