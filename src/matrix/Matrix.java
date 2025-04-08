@@ -18,6 +18,15 @@ public class Matrix {
         this.Update();
     }
 
+    public void print() {
+        for (double[] row : matrix) {
+            for (double val : row) {
+                System.out.print(val + " ");
+            }
+            System.out.println();
+        }
+    }
+
     public boolean Equals(Matrix matrix) {
         if (matrix.width != this.width) return false;
         if (matrix.height != this.height) return false;
