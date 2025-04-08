@@ -35,14 +35,26 @@ public class TestMatrix {
     }
 
     public static boolean test4() throws Exception {
-        double[][] arr1 = {{5, 1}, {6, 7}};
+        double[][] arr1 = {{5, 10}, {3, 8}};
         Matrix m1 = new Matrix(arr1);
 
-        double[][] arr2 = {{1, 6}, {0, 1}};
+        double[][] arr2 = {{1, 2}, {0, 1}};
         Matrix m2 = new Matrix(arr2);
 
         m1.Gaussian();
-        if (m1.equals(m2)) return true;
+        if (m2.Equals(m1)) return true;
+        else return false;
+    }
+
+    public static boolean test5() throws Exception {
+        double[][] arr1 = {{3, 10}, {1, 10}};
+        Matrix m1 = new Matrix(arr1);
+
+        double[][] arr2 = {{1, 3.33333}, {0, 1}};
+        Matrix m2 = new Matrix(arr2);
+
+        m1.Gaussian();
+        if (m2.Equals(m1)) return true;
         else return false;
     }
 
@@ -51,5 +63,6 @@ public class TestMatrix {
         System.out.println("test2 passed: " + test2());
         System.out.println("test3 passed: " + test3());
         System.out.println("test4 passed: " + test4());
+        System.out.println("test5 passed: " + test5());
     }
 }

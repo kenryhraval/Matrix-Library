@@ -23,7 +23,7 @@ public class Matrix {
         if (matrix.height != this.height) return false;
         for (int i = 0; i < this.height; i++) {
             for (int j = 0; j < this.width; j++) {
-                if (this.matrix[i][j] != matrix.matrix[i][j]) {
+                if (Math.abs(this.matrix[i][j] - matrix.matrix[i][j]) > 0.00001) {
                     return false;
                 }
             }
@@ -114,66 +114,32 @@ public class Matrix {
         
     }
 
-    // the problem is that not only rows of 'pure' zeros should be moved
-    // but also the ones with zeros in bad positions, like:
-    // 0 1 0
-    // 1 0 0
-    // 0 1 1
-
     public void Gaussian() {
-
-        // find rows of 'pure' zeros and move them down
-        int zrows = 0;
-
-        for (int i = this.height-1; i >= 0; i--) {
-            boolean zeros = true;
-
-            // does the current row consist of only zeros?
-            for (int j = 0; j < this.width; j++) {
-                if (this.matrix[i][j] != 0) {
-                    zeros = false; break;
-                }
-            }
-            if (!zeros) continue;
-
-            zrows++;
-
-            // copy the last non-zero row
-            double[] row = new double[this.width];
-            for (int j = 0; j < this.width; j++) {
-                row[j] = this.matrix[this.height-zrows][j];
-            }
-
-            // paste it into the place of the zero row
-            for (int j = 0; j < this.width; j++) {
-                this.matrix[i][j] = row[j];
-            }
-
-            //the last non-zero row now consists of zeros
-            for (int j = 0; j < this.width; j++) {
-                this.matrix[this.height-zrows][j] = 0;
-            }
-        }
-        // divide and subtract
+        // the problem is that not only rows of 'pure' zeros should be moved
+        // but also the ones with zeros in bad positions, like:
+        // 0 1 0
+        // 1 0 0
+        // 0 1 1
         Gaussian_Subtask(0, 0);
-
-        for (int i = 0; i < this.height; i++) {
-            for (int j = 0; j < this.width; j++) {
-                System.out.println(this.matrix[i][j] + " ");
-            }
-            System.out.println('\n');
-        }
     }
 
     private void Gaussian_Subtask(int m, int n) {
-        if (m > height-1 || n > width-1) return;
+        // for debug
+        // for (int i = 0; i < this.height; i++) {
+        //     for (int j = 0; j < this.width; j++) {
+        //         System.out.print(this.matrix[i][j] + " ");
+        //     }
+        //     System.out.println();
+        // } System.out.println();
+
+        if (m > this.height-1 || n > this.width-1) return;
 
         if (this.matrix[m][n] == 0) Gaussian_Tidy(m, n);
         // a free variable detected (no pivot)
         if (this.matrix[m][n] == 0) Gaussian_Subtask(m, n+1);
         
         else {
-            // get a one on the diagonal
+            // to get a one on the pivot, divide by it
             for (int j = n+1; j < this.width; j++) {
                 this.matrix[m][j] /= this.matrix[m][n]; 
             }
@@ -181,27 +147,31 @@ public class Matrix {
             // change the pivot at last
             this.matrix[m][n] = 1;
 
-            // zeros down
+            // zeros down the column m
             for (int i = m+1; i < this.height; i++) {
-                this.matrix[i][n] = 0;
+
+                // to get a zero under, all elements of the row are affected
                 for (int j = n+1; j < this.width; j++) {
-                    this.matrix[i][j] -= this.matrix[m][j] * this.matrix[i][j];
+                    this.matrix[i][j] -= this.matrix[m][j] * this.matrix[i][n];
                 }
+
+                // change to zero at last
+                this.matrix[i][n] = 0;
             }
 
             // next rectangle
-            Gaussian_Subtask(m+1, width+1);
+            Gaussian_Subtask(m+1, n+1);
         }
     }
 
-    private void Gaussian_Tidy(int m, int width) {
-        for (int i = this.height; i > m; i--) {
-            if (this.matrix[i][width] != 0) {
+    private void Gaussian_Tidy(int m, int n) {
+        for (int i = this.height-1; i > m; i--) {
+            if (this.matrix[i][n] != 0) {
                 // copy the last non-zero row
                 double[] row1 = Copy_Row(i);
-                double[] row2 = Copy_Row(m-1);
+                double[] row2 = Copy_Row(m);
                 Paste_Row(i, row2);
-                Paste_Row(m-1, row1);
+                Paste_Row(m, row1);
             }
         }
     }
