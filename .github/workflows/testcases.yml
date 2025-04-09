@@ -18,7 +18,9 @@ jobs:
         distribution: 'temurin'
         java-version: '21'
 
-    - name: Compile and run tests
+    - name: Set up Gradle
+      uses: gradle/wrapper-validation-action@v1
+
+    - name: Build and test with Gradle
       run: |
-        javac -d out src/matrix/*.java test/TestMatrix.java
-        java -cp out test.TestMatrix
+        ./gradlew build

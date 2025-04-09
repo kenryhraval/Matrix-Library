@@ -1,2 +1,5 @@
 /out
 .vscode
+.gradle
+# Ignore Gradle build output directory
+**/build/
