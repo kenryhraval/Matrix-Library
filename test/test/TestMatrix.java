@@ -1,3 +1,5 @@
+package test;
+
 import matrix.Matrix;
 
 public class TestMatrix {
