@@ -57,7 +57,6 @@ public class TestMatrix {
         if (m2.Equals(m1)) return true;
         else return false;
     }
-
     public static void main(String[] args) throws Exception {
         System.out.println("test1 passed: " + test1());
         System.out.println("test2 passed: " + test2());
