@@ -14,6 +14,6 @@ jobs:
         distribution: 'temurin'
         java-version: 21
     - name: Compile
-      run: javac -d out src/matrix/*.java test/*.java
+      run: javac -d out src/matrix/*.java test/test/*.java
     - name: Run Manual Tests
       run: java -cp out test.TestMatrix
