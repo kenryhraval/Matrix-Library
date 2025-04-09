@@ -1,0 +1,19 @@
+name: Manual Java Test
+
+on:
+  push:
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: 21
+    - name: Compile
+      run: javac -d out src/matrix/*.java test/*.java
+    - name: Run Manual Tests
+      run: java -cp out test.TestMatrix

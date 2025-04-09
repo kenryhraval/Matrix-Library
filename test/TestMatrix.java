@@ -1,6 +1,4 @@
-package test;
 import matrix.Matrix;
-
 
 public class TestMatrix {
     public static boolean test1() throws Exception {
@@ -50,7 +48,7 @@ public class TestMatrix {
         double[][] arr1 = {{3, 10}, {1, 10}};
         Matrix m1 = new Matrix(arr1);
 
-        double[][] arr2 = {{1, 3.33333}, {0, 1}};
+        double[][] arr2 = {{1, 3.33333}, {0, 0}}; // 0 1
         Matrix m2 = new Matrix(arr2);
 
         m1.Gaussian();
@@ -59,10 +57,51 @@ public class TestMatrix {
     }
 
     public static void main(String[] args) throws Exception {
-        System.out.println("test1 passed: " + test1());
-        System.out.println("test2 passed: " + test2());
-        System.out.println("test3 passed: " + test3());
-        System.out.println("test4 passed: " + test4());
-        System.out.println("test5 passed: " + test5());
+        // System.out.println("test1 passed: " + test1());
+        // System.out.println("test2 passed: " + test2());
+        // System.out.println("test3 passed: " + test3());
+        // System.out.println("test4 passed: " + test4());
+        // System.out.println("test5 passed: " + test5());
+
+        boolean allTestsPassed = true;
+
+        if (!test1()) {
+            System.out.println("test1 failed: Matrix addition result is incorrect.");
+            allTestsPassed = false;
+        } else {
+            System.out.println("test1 passed");
+        }
+
+        if (!test2()) {
+            System.out.println("test2 failed: Determinant is incorrect.");
+            allTestsPassed = false;
+        } else {
+            System.out.println("test2 passed");
+        }
+
+        if (!test3()) {
+            System.out.println("test3 failed: Determinant is incorrect.");
+            allTestsPassed = false;
+        } else {
+            System.out.println("test3 passed");
+        }
+
+        if (!test4()) {
+            System.out.println("test4 failed: Gaussian elimination result is incorrect.");
+            allTestsPassed = false;
+        } else {
+            System.out.println("test4 passed");
+        }
+
+        if (!test5()) {
+            System.out.println("test5 failed: Gaussian elimination result is incorrect.");
+            allTestsPassed = false;
+        } else {
+            System.out.println("test5 passed");
+        }
+
+        if (!allTestsPassed) {
+            System.exit(1);
+        }
     }
 }
