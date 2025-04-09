@@ -48,7 +48,7 @@ public class TestMatrix {
         double[][] arr1 = {{3, 10}, {1, 10}};
         Matrix m1 = new Matrix(arr1);
 
-        double[][] arr2 = {{1, 3.33333}, {0, 0}}; // 0 1
+        double[][] arr2 = {{1, 3.33333}, {0, 1}};
         Matrix m2 = new Matrix(arr2);
 
         m1.Gaussian();
