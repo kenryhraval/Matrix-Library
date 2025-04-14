@@ -3,7 +3,7 @@ package test;
 import matrix.Matrix;
 
 public class TestMatrix {
-    public static boolean test1() throws Exception {
+    public static boolean addition() throws Exception {
         double[][] arr1 = {{1, 0}, {0, 1}};
         double[][] arr2 = {{0, 2}, {3, 0}};
         Matrix m1 = new Matrix(arr1);
@@ -18,7 +18,7 @@ public class TestMatrix {
         else return false;
     }   
 
-    public static boolean test2() throws Exception {
+    public static boolean determinant1() throws Exception {
         double[][] arr1 = {{1, 1}, {2, 5}};
         Matrix m1 = new Matrix(arr1);
 
@@ -26,7 +26,7 @@ public class TestMatrix {
         else return false;
     }
 
-    public static boolean test3() throws Exception {
+    public static boolean determinant2() throws Exception {
         double[][] arr2 = {{5}};
         Matrix m2 = new Matrix(arr2);
 
@@ -34,7 +34,7 @@ public class TestMatrix {
         else return false;
     }
 
-    public static boolean test4() throws Exception {
+    public static boolean gaussian1() throws Exception {
         double[][] arr1 = {{5, 10}, {3, 8}};
         Matrix m1 = new Matrix(arr1);
 
@@ -46,7 +46,7 @@ public class TestMatrix {
         else return false;
     }
 
-    public static boolean test5() throws Exception {
+    public static boolean gaussian2() throws Exception {
         double[][] arr1 = {{3, 10}, {1, 10}};
         Matrix m1 = new Matrix(arr1);
 
@@ -58,6 +58,34 @@ public class TestMatrix {
         else return false;
     }
 
+    public static boolean multiplication() throws Exception {
+        double[][] arr1 = {{5, 10}, {3, 8}};
+        Matrix m1 = new Matrix(arr1);
+
+        double[][] arr2 = {{1, 2}, {0, 1}};
+        Matrix m2 = new Matrix(arr2);
+
+        m1.Times(m2);
+
+        double[][] arr3 = {{5, 20}, {3, 14}};
+        Matrix m3 = new Matrix(arr3);
+
+        if (m1.Equals(m3)) return true;
+        else return false;
+    }
+    
+    public static boolean transpose() throws Exception {
+        double[][] arr1 = {{5, 10, 9}, {3, 8, 99}};
+        Matrix m1 = new Matrix(arr1);
+
+        m1.Transpose();
+
+        double[][] arr3 = {{5, 3}, {10, 8}, {9, 99}};
+        Matrix m3 = new Matrix(arr3);
+
+        if (m1.Equals(m3)) return true;
+        else return false;
+    }
     public static void main(String[] args) throws Exception {
         // System.out.println("test1 passed: " + test1());
         // System.out.println("test2 passed: " + test2());
@@ -67,39 +95,53 @@ public class TestMatrix {
 
         boolean allTestsPassed = true;
 
-        if (!test1()) {
-            System.out.println("test1 failed: Matrix addition result is incorrect.");
+        if (!addition()) {
+            System.out.println("addition failed: Matrix addition result is incorrect.");
             allTestsPassed = false;
         } else {
-            System.out.println("test1 passed");
+            System.out.println("addition passed");
         }
 
-        if (!test2()) {
-            System.out.println("test2 failed: Determinant is incorrect.");
+        if (!determinant1()) {
+            System.out.println("determinant1 failed: Determinant is incorrect.");
             allTestsPassed = false;
         } else {
-            System.out.println("test2 passed");
+            System.out.println("determinant1 passed");
         }
 
-        if (!test3()) {
-            System.out.println("test3 failed: Determinant is incorrect.");
+        if (!determinant2()) {
+            System.out.println("determinant2 failed: Determinant is incorrect.");
             allTestsPassed = false;
         } else {
-            System.out.println("test3 passed");
+            System.out.println("determinant2 passed");
         }
 
-        if (!test4()) {
-            System.out.println("test4 failed: Gaussian elimination result is incorrect.");
+        if (!gaussian1()) {
+            System.out.println("gaussian1 failed: Gaussian elimination result is incorrect.");
             allTestsPassed = false;
         } else {
-            System.out.println("test4 passed");
+            System.out.println("gaussian1 passed");
         }
 
-        if (!test5()) {
-            System.out.println("test5 failed: Gaussian elimination result is incorrect.");
+        if (!gaussian2()) {
+            System.out.println("gaussian2 failed: Gaussian elimination result is incorrect.");
             allTestsPassed = false;
         } else {
-            System.out.println("test5 passed");
+            System.out.println("gaussian2 passed");
+        }
+
+        if (!multiplication()) {
+            System.out.println("multiplication failed: Multiplication result is incorrect.");
+            allTestsPassed = false;
+        } else {
+            System.out.println("multiplication passed");
+        }
+
+        if (!transpose()) {
+            System.out.println("transpose failed: Transpose result is incorrect.");
+            allTestsPassed = false;
+        } else {
+            System.out.println("transpose passed");
         }
 
         if (!allTestsPassed) {

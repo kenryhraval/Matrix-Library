@@ -41,8 +41,8 @@ public class Matrix {
     }
 
     private void Update() {
-        this.height = matrix.length;
-        this.width = matrix[0].length;
+        this.height = this.matrix.length;
+        this.width = this.matrix[0].length;
     }
 
     public void Plus(Matrix m2) throws Exception {
@@ -198,4 +198,21 @@ public class Matrix {
             this.matrix[i][j] = row[j];
         }
     }
+
+    public void Transpose() {
+        double[][] m = new double[this.width][];
+        for (int k = 0; k < this.width; k++) {
+            m[k] = new double[this.height];
+        }
+
+        for (int i = 0; i < this.height; i++) {
+            for (int j = 0; j < this.width; j++) {
+                m[j][i] = this.matrix[i][j];
+            }
+        }
+
+        this.matrix = m;
+        Update();
+    }
+
 }
