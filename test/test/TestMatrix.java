@@ -86,6 +86,17 @@ public class TestMatrix {
         if (m1.Equals(m3)) return true;
         else return false;
     }
+
+    public static boolean copy() throws Exception {
+        double[][] arr1 = {{5, 10, 9}, {3, 8, 99}};
+        Matrix m1 = new Matrix(arr1);
+
+        double[][] arr2 = m1.getData();
+        Matrix m2 = new Matrix(arr2);
+        
+        if (m1.Equals(m2)) return true;
+        else return false;
+    }
     
     public static void main(String[] args) throws Exception {
         // System.out.println("test1 passed: " + test1());

@@ -27,6 +27,14 @@ public class Matrix {
         }
     }
 
+    public double[][] getData() {
+        double[][] copy = new double[height][width];
+        for (int i = 0; i < height; i++) {
+            System.arraycopy(matrix[i], 0, copy[i], 0, width);
+        }
+        return copy;
+    }
+
     public boolean Equals(Matrix matrix) {
         if (matrix.width != this.width) return false;
         if (matrix.height != this.height) return false;
