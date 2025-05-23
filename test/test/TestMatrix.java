@@ -87,7 +87,7 @@ public class TestMatrix {
         else return false;
     }
 
-    public static boolean copy() throws Exception {
+    public static boolean getcopy() throws Exception {
         double[][] arr1 = {{5, 10, 9}, {3, 8, 99}};
         Matrix m1 = new Matrix(arr1);
 
@@ -156,7 +156,7 @@ public class TestMatrix {
             System.out.println("transpose passed");
         }
 
-        if (!copy()) {
+        if (!getcopy()) {
             System.out.println("copy failed: copy result is incorrect.");
             allTestsPassed = false;
         } else {
