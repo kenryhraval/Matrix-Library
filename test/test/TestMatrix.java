@@ -156,6 +156,13 @@ public class TestMatrix {
             System.out.println("transpose passed");
         }
 
+        if (!copy()) {
+            System.out.println("copy failed: copy result is incorrect.");
+            allTestsPassed = false;
+        } else {
+            System.out.println("copy passed");
+        }
+
         if (!allTestsPassed) {
             System.exit(1);
         }
