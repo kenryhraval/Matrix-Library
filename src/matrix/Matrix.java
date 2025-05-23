@@ -18,6 +18,17 @@ public class Matrix {
         this.Update();
     }
 
+    public Matrix(Matrix other) {
+        this.height = other.height;
+        this.width = other.width;
+
+        // Deep copy of the matrix
+        this.matrix = new double[height][width];
+        for (int i = 0; i < height; i++) {
+            System.arraycopy(other.matrix[i], 0, this.matrix[i], 0, width);
+        }
+    }
+
     public void print() {
         for (double[] row : matrix) {
             for (double val : row) {
@@ -55,10 +66,10 @@ public class Matrix {
 
     public void Plus(Matrix m2) throws Exception {
         if (this.width != m2.width) {
-            throw new Exception("Matrices must have the same number of columns.");
+            throw new Exception("Matricām nesakrīt kolonnu skaits.");
         } 
         if (this.height != m2.height) {
-            throw new Exception("Matrices must have the same number of rows.");
+            throw new Exception("Matricām nesakrīt rindiņu skaits.");
         } 
         
         for (int i = 0; i < this.height; i++) {
@@ -70,7 +81,7 @@ public class Matrix {
 
     public void Times(Matrix m2) throws Exception {
         if (this.width != m2.height) {
-            throw new Exception("Dimensions must match.");
+            throw new Exception("Matricām nesakrīt izmēri.");
         } 
 
         double[][] updated = new double[this.height][];
