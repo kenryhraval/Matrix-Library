@@ -196,7 +196,7 @@ public class Main {
             return;
         }
 
-        System.out.print("Ievadiet darbību izteiksmi (neievadiet neko pamācībai): ");
+        System.out.print("Ievadiet darbību izteiksmi: ");
         String line = reader.nextLine();
 
         if (line.isEmpty()) {
@@ -234,7 +234,7 @@ public class Main {
             // create a new matrix based on the first operand
             Matrix res = new Matrix(matrices.get(ops[0]));
 
-             try {
+            try {
                 if (dar[0] == '*') res.Times(matrices.get(ops[1]));
                 else if (dar[0] == '+') res.Plus(matrices.get(ops[1]));
             } catch (Exception e) {

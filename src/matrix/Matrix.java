@@ -30,13 +30,33 @@ public class Matrix {
     }
 
     public void print() {
+        int colWidth = 10;
+        String horizontalLine = "-".repeat(width * (colWidth + 3) + 1);
+
+        System.out.println(horizontalLine);
+
         for (double[] row : matrix) {
+            System.out.print("|");
             for (double val : row) {
-                System.out.print(val + " ");
+                String strVal;
+                double absVal = Math.abs(val);
+
+                // Use scientific notation for very large or very small values
+                if (absVal >= 1e5 || (absVal > 0 && absVal < 1e-2)) {
+                    strVal = String.format("%.2e", val);
+                } else if (val == Math.floor(val)) {
+                    strVal = String.format("%.0f", val); // integer
+                } else {
+                    strVal = String.format("%.2f", val); // regular decimal
+                }
+
+                System.out.print(String.format(" %" + colWidth + "s |", strVal));
             }
             System.out.println();
+            System.out.println(horizontalLine);
         }
     }
+
 
     public double[][] getData() {
         double[][] copy = new double[height][width];
