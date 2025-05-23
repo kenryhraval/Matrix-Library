@@ -87,7 +87,7 @@ public class Matrix {
 
     public double Determinant() throws Exception {
         if (this.width != this.height) {
-            throw new Exception("Matrix must be square.");
+            throw new Exception("Matricai jābūt kvadrātiskai.");
         }
 
         return Determinat_Subtask(this.matrix, this.width);
@@ -215,4 +215,6 @@ public class Matrix {
         Update();
     }
 
+
+    
 }

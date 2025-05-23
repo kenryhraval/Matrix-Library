@@ -10,16 +10,16 @@ public class Main {
     private static List<Matrix> matrices = new ArrayList<>();
     public static void main(String[] args) throws Exception {
 
-        System.out.println("=== Matrix CLI Tool ===");
+        System.out.println("%=%=%=%=% MATRICU KOMANDRINDAS PALĪGS %=%=%=%=%");
         while (true) {
-            System.out.println("\nMenu:");
-            System.out.println("1. Create matrix");
-            System.out.println("2. View matrices");
-            System.out.println("3. Calculate determinant");
-            System.out.println("4. Save matrix to file");
-            System.out.println("5. Load matrix from file");
-            System.out.println("0. Exit");
-            System.out.print("> ");
+            System.out.println("\nIzvēlne:");
+            System.out.println("1. Izveidot matricu");
+            System.out.println("2. Pieejamās matricas");
+            System.out.println("3. Apēķināt noteicēju");
+            System.out.println("4. Saglabāt matricu");
+            System.out.println("5. Ielādēt matricu");
+            System.out.println("0. Pabeigt");
+            System.out.print("# ");
 
             int choice = reader.nextInt();
             reader.nextLine();
@@ -40,13 +40,13 @@ public class Main {
     }
         
     private static void createMatrix() {
-        System.out.print("Enter dimensions (m n): ");
+        System.out.print("Ievadiet matricas izmērus (m n): ");
         int m = reader.nextInt();
         int n = reader.nextInt();
 
         double[][] arr = new double[m][n];
 
-        System.out.println("Enter elements row by row:");
+        System.out.println("Ievadiet elementus pa rindiņai:");
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
                 arr[i][j] = reader.nextDouble();
@@ -55,35 +55,35 @@ public class Main {
 
         Matrix mat = new Matrix(arr);
         matrices.add(mat);
-        System.out.println("Matrix saved as #" + (matrices.size() - 1));
+        System.out.println("Matrica saglabāta kā #" + (matrices.size() - 1));
     }
 
     private static void viewMatrices() {
         if (matrices.isEmpty()) {
-            System.out.println("No matrices stored.");
+            System.out.println("Nav saglabātu matricu.");
             return;
         }
 
         for (int i = 0; i < matrices.size(); i++) {
-            System.out.println("Matrix #" + i + ":");
-            matrices.get(i).print(); // you can add a `print()` method in Matrix
+            System.out.println("Matrica #" + i + ":");
+            matrices.get(i).print();
         }
     }
 
     private static void calculateDeterminant() {
-        System.out.print("Choose matrix index: ");
+        System.out.print("Ievadiet matricas numuru: ");
         int idx = reader.nextInt();
 
         if (idx < 0 || idx >= matrices.size()) {
-            System.out.println("Invalid index.");
+            System.out.println("Nederīgs numurs.");
             return;
         }
 
         try {
             double det = matrices.get(idx).Determinant();
-            System.out.println("Determinant: " + det);
+            System.out.println("Noteicējs: " + det);
         } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+            System.out.println("Kļūda: " + e.getMessage());
         }
     }
 }
